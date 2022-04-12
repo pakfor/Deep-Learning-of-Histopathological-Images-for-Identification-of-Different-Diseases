@@ -1,0 +1,25 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib
+
+# Set DPI for the plot
+matplotlib.rcParams['figure.dpi'] = 300
+
+# Read excel file that contains training information, i.e., epoch, training loss, testing loss
+resultXLSX = pd.read_excel('Camelyon16/Training/Training Results/Model_UNet/log/training_activities.xlsx')
+
+# Extract tuple that contains relevant information from the loaded excel file
+epoch = tuple(resultXLSX['Epoch'])
+train_loss = tuple(resultXLSX['Training Loss'])
+test_loss = tuple(resultXLSX['Testing Loss'])
+
+# Plot the training loss-epoch and testing loss-epoch in the same graph
+plt.plot(epoch,train_loss)
+plt.plot(epoch,test_loss)
+plt.title('Loss-Epoch Plot')
+plt.xlabel('Epoch')
+plt.ylabel('Loss (Mean Squared Loss)')
+plt.legend(['Training Loss','Testing Loss'])
+plt.show()
+
